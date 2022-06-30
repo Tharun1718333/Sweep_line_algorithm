@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DAA Assignment</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<style>
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://cdn.wallpapersafari.com/47/94/KJNqhS.jpg");
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
+
+.tab { margin-left: 40px; }
+
+
+</style>
+</head>
+<body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="#" class="w3-button w3-block w3-black"><b>HOME</b></a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#about" class="w3-button w3-block w3-black"><b>THE ALGORITHM</b></a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#menu" class="w3-button w3-block w3-black"><b>TEST CASES</b></a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#where" class="w3-button w3-block w3-black"><b>TIMING ANALYSIS</b></a>
+    </div>
+  </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag"><b>ASSIGNMENT I</b></span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white" style="font-size:60px; font-weight:bold">Design and Analysis of Algorithms<br></span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-white"><b>CS F364</b></span>
+  </div>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+<!-- About Container -->
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">THE ALGORITHM</span></h5>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>Objective: Given a set of line segments,compute all the intersection points of those line segments.</i></p>
+    </div>
+	<h8><b>Structures Used</b></h8>
+	<p>line_segment :- consists of 4 points (x1,y1,x2,y2) in the exact same order<br>
+       event        :- consist of two float points representing the x and y coordinates of the event<br>
+       T_avl        :- consists of a line segment,2 address to the left and right nodes and an integer representing the height<br>      
+       event_avl    :- consists of an event two addresses to the left and right nodes and an integer representing the height
+</p>
+    <h7><b>Functions Used</b></h7>
+	<p> 1. deleting a node (3.1 for event,3.2 for line_segment)<br>
+        2. inserting a node(2.1 for event,2.2 for line_segment)<br>
+		3. find intersection<br>
+		4. add if upper<br>
+		5. add if lower<br>
+		6. add if intersecting<br>
+		7. get the minimum value node<br>
+		8. compare events<br>
+		9. compare line_segments given event<br>
+		10. inorder given root node<br>
+		11. find slope<br>
+		12. find c<br>
+		13. find intersection x - coordinate<br>
+		14. find intersection y-coordinate<br>
+		15. get height<br>
+		16. right rotate<br>
+		17. left rotate <br>
+		18. find the line segment nearest and to the right side<br>
+		19. find the line segment nearest and to the left side<br>
+		20. find if intersected and add if the do in the event queue</p>
+		
+		<h9><b>Pseudocode</b></h9>
+		<p> 1. Ask for the number of line segments<br>
+			2. declare a vector with unspecified size<br>
+			3. use a for loop to take the input<br>
+				<span class="tab">3.1. in each loop we get 2 points(x1,y1,x2,y2) as input<br>
+				<span class="tab">3.2. make sure (x2,y2) is the lower point if not exchange the points<br>
+				<span class="tab">3.3. declare a line_segment structure with the input points<br>
+				<span class="tab">3.4. push the line_segment structure into the vector<br>
+			4. declare a event_avl (event_queue) with NULL initilization<br>
+			5. use a for loop to add the events<br>   
+				<span class="tab">5.1 iterate through the line_segment vector<br>
+				<span class="tab">5.2 add the two points present in each line segment into the event_avl <span class="tab">using the function 2.1<br>  
+			6. declare a T_avl (status queue) with null initilization<br>
+			7. enter into a while loop with condition (event_queue is not empty)<br>
+			<span class="tab">7.1. calculate the grates event in the current event_queue by always <span class="tab">going right (temp)<br>
+			<span class="tab">7.2. declare 3 vectors with line_segment as data type and size as <span class="tab">unspecified(upper_lines , lower_lines , intersecting_lines)<br>
+			<span class="tab">7.3. iterate through line_segment vector<br>
+				<span class="tab"><span class="tab">7.3.1 add all the points if satisfied using function 4<br>
+			<span class="tab">7.4 iterate through line_segment vector<br>
+			<span class="tab"><span class="tab">7.4.1 add all the points if satisfied using function 5<br>
+			<span class="tab">7.5 iterate through line_segment vector<br>
+				<span class="tab"><span class="tab">7.5.1 add all the points if satisfied using function 6<br>
+			<span class="tab">7.6 delete all the line_segments prsent in lower_lines from the status <span class="tab">queue using function 3.2<br>
+			<span class="tab">7.7 delete all the line_segments prsent in intersecting_lines from the <span class="tab">status queue using function 3.2<br>
+			<span class="tab">7.8 insert all the line_segments from intersecting_lines into the status <span class="tab">queue using function 2.2<br>
+			<span class="tab">7.9 insert all the line_segments from upper_lines into the status queue <span class="tab">using function 2.2<br>
+			<span class="tab">7.10 if the size of upper_lines and interscting_lines both are 0<br>
+					<span class="tab"><span class="tab">7.10.1, find the left and right nearest node using the functions 18, <span class="tab"><span class="tab"> 17 respectively<br>
+					<span class="tab"><span class="tab">7.10.2, pass the results from 7.10.1 along with the <span class="tab"><span class="tab">temp(current_event) to the function 20<br>
+			<span class="tab">7.11 else for 7.10 <br>
+					<span class="tab"><span class="tab">7.11.1 Declare two line segmnets with NULL intilization<br>
+				<span class="tab"><span class="tab">7.11.2 iterate through upper_lines and update the maxi,mini with  <span class="tab"><span class="tab">mini  being the rigthmost line and maxi being the left most node<br>
+				<span class="tab"><span class="tab">7.11.3 repeat 7.11.2 but use intersecting_lines instead of <span class="tab"><span class="tab">upper_lines<br>
+				<span class="tab"><span class="tab">7.11.4 find the left and right nearest node using the functions 18, <span class="tab"><span class="tab">17 respectively<br>
+				<span class="tab"><span class="tab">7.11.5 pass the right nearest node, mini and temp(current_event) to <span class="tab"><span class="tab">the function 20<br>
+				<span class="tab"><span class="tab">7.11.6 pass the  left nearest node, maxi and temp(current_event) to <span class="tab"><span class="tab">the function 20<br>
+			<span class="tab">7.12 if upper_lines + lower_lines + intersecting_lines has more than one <span class="tab">element print the current event as an intersection point<br>
+			<span class="tab">7.13 delete the temp(current_event) from event queue using function 3.1
+    
+  </div>
+</div>
+
+<!-- Menu Container -->
+<div class="w3-container" id="menu">
+  <div class="w3-content" style="max-width:700px">
+ 
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">TEST CASES</span></h5>
+  
+    <div class="w3-row w3-center w3-card w3-padding">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
+        <div class="w3-col s6 tablink">Input</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
+        <div class="w3-col s6 tablink">Output</div>
+      </a>
+    </div>
+
+    <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+      <h4>These are our input test cases which consist of line segments.</h4>
+	  <h5>Input 1</h5>
+      <img src="testcase1.png"   width="530" height="300">
+    
+      <h5>Input 2</h5>
+	  <img src="testcase2.png"   width="530" height="300">
+      
+    
+      <h5>Input 3</h5>
+      <img src="testcase3.png"   width="530" height="300">
+    
+      <h5>Input 4</h5>
+	  <img src="testcase4.png"   width="530" height="300">
+ 
+      
+    </div>
+
+    <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
+      <h4>The output snapshots have the intersection points marked in bold.</h4>
+	  <h5>Output 1</h5>
+	  <img src="output1.png"   width="530" height="300">
+     
+    
+      <h5>Output 2</h5>
+	   <img src="output2.png"   width="530" height="300">
+      
+    
+      <h5>Output 3</h5>
+	   <img src="output3.png"   width="530" height="300">
+      
+    
+      <h5>Output 4</h5>
+	   <img src="output4.png"   width="530" height="300">
+     
+    </div>  
+   
+  </div>
+</div>
+
+<!-- Contact/Area Container -->
+<div class="w3-container" id="where" style="padding-bottom:32px;">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">TIMING ANALYSIS</span></h5>
+    <p>Let there be n input line segments
+We have used balanced binary trees(AVL) to implement the event queue.Using the AVL trees each insertion and deletion take log (n) time. So to make the initial event queue nlog(n) time is required.
+Now for every additional intersection we find we spend O(log n) for its insertion and deletions 
+So this brings our time complexity to O(nlog(n) + (I)log(n)) , where I is the number of intersections.
+The algorithm we use will tend to take advantage if there are fewer intersections as insertion and deletion take less than log(n) time and less I will lead to less time being taken.</p>
+    
+       
+  </div>
+</div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+  <p><b>Tharun Reddy 2019A7PS0190H<br>
+		Aparna Budhwar 2018B4A70857H<br>
+		Isha Gohel 2018B4A70454H<br>
+		Divyani Srivastava 2018B4A71050H
+  </b></p>
+</footer>
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+}
+document.getElementById("myLink").click();
+</script>
+
+</body>
+</html>
